@@ -9,14 +9,16 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class SeekerPojo {
-    private int id;
+    private Integer id;
 
-    private String name;
+    private String seekerName;
 
     private String email;
 
     private String address;
+
+    private Integer userId;
+
+    private Integer bookId;
 }

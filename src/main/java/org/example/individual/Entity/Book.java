@@ -6,19 +6,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "books")
+@Table(name = "book")
 @Setter
 @Getter
 public class Book {
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "book_seq_gen")
-    @SequenceGenerator(name = "book_seq_gen",sequenceName = "book_seq",allocationSize = 1,initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq_gen")
+    @SequenceGenerator(name = "book_seq_gen", sequenceName = "book_seq", allocationSize = 1, initialValue = 1)
     @Id
     private Integer id;
 
-    @Column(name = "book_name",length = 255)
+    @Column(name = "book_name", length = 255)
     private String booksName;
 
-    @Column(name = "genres",length = 255)
+    @Column(name = "genres", length = 255)
     private String genres;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.aspectj.bridge.IMessage;
-import org.aspectj.bridge.IMessage;
 
 @Setter
 @Getter
@@ -16,12 +13,9 @@ import org.aspectj.bridge.IMessage;
 public class BooksPojo {
     private Integer id;
 
-    @NotNull(message="name is required")
-    private  String name;
+    private String booksName;
 
-    @NotNull(message="genre is required")
-    private  String genre;
+    private String genres;
 
-    @NotNull(message="donor id is required")
-    private Integer donor_id;
+    private Integer userId;
 }
