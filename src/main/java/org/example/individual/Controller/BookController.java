@@ -34,13 +34,22 @@ public class BookController {
 
     @PutMapping
     public void update(@RequestBody BooksPojo booksPojo) {
+        GlobalAPIResponse<Integer> globalAPIResponse = new GlobalAPIResponse<>();
         bookService.save(booksPojo);
+        globalAPIResponse.setData(booksPojo.getId());
+        globalAPIResponse.setData(200);
+        globalAPIResponse.setMessage("data updated successfully");
+
+
 
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable Integer id) {
+        GlobalAPIResponse<Integer> globalAPIResponse = new GlobalAPIResponse<>();
         bookService.deleteById(id);
+        globalAPIResponse.setData(id);
+        globalAPIResponse.setMessage("data deleted successfully");
 
 
     }
