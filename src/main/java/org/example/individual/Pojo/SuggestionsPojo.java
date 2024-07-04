@@ -1,23 +1,18 @@
 package org.example.individual.Pojo;
 
-
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
-public class BooksPojo {
-    private Integer id;
+@NoArgsConstructor
 
 
-
-    private String booksName;
-
-    private String genres;
-
-    private Integer userId;
+public class SuggestionsPojo {
+    @NotNull
+    private String suggestions;
 }
