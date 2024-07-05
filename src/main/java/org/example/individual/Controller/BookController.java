@@ -31,6 +31,17 @@ public class BookController {
         return items;
 
     }
+    @GetMapping("/user/{id}")
+    public List<Book> findByUserId(@PathVariable Integer id) {
+        ImageToBase64 imageToBase64 = new ImageToBase64();
+       List<Book> items= this.bookService.findByUserId(id);
+        items = items.stream().map(item -> {
+            item.setImage(imageToBase64.getImageBase64(item.getImage()));
+            return item;
+        }).collect(Collectors.toList());
+        return items;
+
+    }
 
     @PostMapping
     public GlobalAPIResponse<Integer> save( @ModelAttribute BooksPojo booksPojo) throws IOException {

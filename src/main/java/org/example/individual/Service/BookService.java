@@ -13,6 +13,8 @@ public interface BookService {
 
     List<Book> findAll();
 
+    List<Book> findByUserId(Integer id);
+
     Book findById(Integer id);
 
     void deleteById(Integer id);

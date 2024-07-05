@@ -13,5 +13,6 @@ public interface BooksRepository extends JpaRepository<Book, Integer> {
     @Query(nativeQuery = true, value = "select id, books_id as bookID, name as name,genres from books")
     List<BooksProjection> findAllData();
 
+    List<Book> findBooksByUserId(Integer userId);
 
 }

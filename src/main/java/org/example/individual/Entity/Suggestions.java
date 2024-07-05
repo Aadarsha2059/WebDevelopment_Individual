@@ -19,4 +19,6 @@ public class Suggestions {
     private String suggestionList;
 
 
+
+
 }

@@ -19,7 +19,7 @@ public class SuggestionsServiceImpl implements SuggestionsService {
     @Override
     public void save(SuggestionsPojo suggestionsPojo) {
         Suggestions suggestions = new Suggestions();
-        suggestions.setSuggestionList(suggestionsPojo.getSuggestions());
+        suggestions.setSuggestionList(suggestionsPojo.getSuggestionList());
         suggestionsRepository.save(suggestions);
 
     }
