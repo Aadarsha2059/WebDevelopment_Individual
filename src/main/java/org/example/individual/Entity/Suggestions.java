@@ -17,4 +17,6 @@ public class Suggestions {
 
     @Column(name="suggestion_list",length = 255)
     private String suggestionList;
+
+
 }

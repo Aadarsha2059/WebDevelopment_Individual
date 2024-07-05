@@ -6,9 +6,13 @@ import org.example.individual.Entity.Book;
 import org.example.individual.Pojo.BooksPojo;
 import org.example.individual.Pojo.GlobalAPIResponse;
 import org.example.individual.Service.BookService;
+import org.example.individual.util.ImageToBase64;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("book")
@@ -18,11 +22,18 @@ public class BookController {
 
     @GetMapping
     public List<Book> findAll() {
-        return this.bookService.findAll();
+        ImageToBase64 imageToBase64 = new ImageToBase64();
+       List<Book> items= this.bookService.findAll();
+        items = items.stream().map(item -> {
+            item.setImage(imageToBase64.getImageBase64(item.getImage()));
+            return item;
+        }).collect(Collectors.toList());
+        return items;
+
     }
 
     @PostMapping
-    public GlobalAPIResponse<Integer> save(@RequestBody BooksPojo booksPojo) {
+    public GlobalAPIResponse<Integer> save( @ModelAttribute BooksPojo booksPojo) throws IOException {
         GlobalAPIResponse<Integer> globalAPIResponse = new GlobalAPIResponse<>();
         Integer bookId = bookService.save(booksPojo);
         globalAPIResponse.setData(bookId);
@@ -33,7 +44,7 @@ public class BookController {
     }
 
     @PutMapping
-    public void update(@RequestBody BooksPojo booksPojo) {
+    public void update(@RequestBody BooksPojo booksPojo) throws IOException {
         GlobalAPIResponse<Integer> globalAPIResponse = new GlobalAPIResponse<>();
         bookService.save(booksPojo);
         globalAPIResponse.setData(booksPojo.getId());

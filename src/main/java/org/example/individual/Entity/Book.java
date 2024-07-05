@@ -21,6 +21,9 @@ public class Book {
     @Column(name = "genres", length = 255)
     private String genres;
 
+    @Column(name = "image", length = 255)
+    private String image;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "books_user_id"))
     private User user;

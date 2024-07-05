@@ -14,5 +14,5 @@ import lombok.Setter;
 
 public class SuggestionsPojo {
     @NotNull
-    private String suggestions;
+    private String suggestionList;
 }
