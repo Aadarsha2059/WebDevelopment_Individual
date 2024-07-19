@@ -3,7 +3,9 @@ package org.example.individual.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.individual.Entity.Book;
+import org.example.individual.Pojo.BookResponse;
 import org.example.individual.Pojo.BooksPojo;
+import org.example.individual.Pojo.BooksProjection;
 import org.example.individual.Pojo.GlobalAPIResponse;
 import org.example.individual.Service.BookService;
 import org.example.individual.util.ImageToBase64;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,10 +23,32 @@ import java.util.stream.Collectors;
 public class BookController {
     private final BookService bookService;
 
+    @GetMapping("/getAllData")
+    public List<BookResponse> findAllData() {
+        ImageToBase64 imageToBase64 = new ImageToBase64();
+        List<BookResponse> bookresponseList = new ArrayList<>();
+       List<BooksProjection> items=  this.bookService.findAllProj();
+        items.forEach(item -> {
+            BookResponse bookResponse = new BookResponse();
+
+            bookResponse.setId(item.getId());
+            bookResponse.setSeekerId(item.getSeekerId());
+            bookResponse.setGenre(item.getGenre());
+            bookResponse.setName(item.getName());
+            bookResponse.setImage(imageToBase64.getImageBase64(item.getImage()));
+            bookResponse.setUserId(item.getUserId());
+
+           bookresponseList.add(bookResponse);
+        });
+        return bookresponseList;
+
+    }
+
+
     @GetMapping
     public List<Book> findAll() {
         ImageToBase64 imageToBase64 = new ImageToBase64();
-       List<Book> items= this.bookService.findAll();
+        List<Book> items= this.bookService.findAll();
         items = items.stream().map(item -> {
             item.setImage(imageToBase64.getImageBase64(item.getImage()));
             return item;
@@ -31,6 +56,7 @@ public class BookController {
         return items;
 
     }
+
     @GetMapping("/user/{id}")
     public List<Book> findByUserId(@PathVariable Integer id) {
         ImageToBase64 imageToBase64 = new ImageToBase64();

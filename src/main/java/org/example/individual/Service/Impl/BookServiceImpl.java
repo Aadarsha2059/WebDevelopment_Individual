@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.individual.Entity.Book;
 import org.example.individual.Entity.User;
 import org.example.individual.Pojo.BooksPojo;
+import org.example.individual.Pojo.BooksProjection;
 import org.example.individual.Repository.BooksRepository;
 import org.example.individual.Repository.UserRepository;
 import org.example.individual.Service.BookService;
@@ -50,6 +51,10 @@ public class BookServiceImpl implements BookService {
         return book.getId();
     }
 
+    @Override
+    public List<BooksProjection> findAllProj() {
+        return bookRepository.findAllData();
+    }
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();

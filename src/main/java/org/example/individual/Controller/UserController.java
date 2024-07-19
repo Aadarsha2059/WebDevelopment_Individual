@@ -3,9 +3,10 @@ package org.example.individual.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.individual.Entity.User;
+import org.example.individual.Pojo.AuthPojo;
 import org.example.individual.Pojo.GlobalAPIResponse;
 import org.example.individual.Pojo.UserPojo;
-import org.example.individual.Service.Impl.UserServiceImpl;
+import org.example.individual.Service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequestMapping("user")
 @RequiredArgsConstructor
 public class UserController {
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @GetMapping
     public List<User> findAll() {
@@ -48,6 +49,11 @@ public class UserController {
     @GetMapping("{id}")
     public User findById(@PathVariable Integer id) {
         return this.userService.findById(id);
+    }
+
+    @PostMapping("/login")
+    public Integer getUserIdByUserNameAndPword(@RequestBody AuthPojo authPojo) {
+        return userService.getUserIdByUserNameAndPword(authPojo);
     }
 
 }

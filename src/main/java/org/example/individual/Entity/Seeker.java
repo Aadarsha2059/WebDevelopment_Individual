@@ -26,11 +26,11 @@ public class Seeker {
     private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "seeker_user_id"))
+    @JoinColumn(name = "userId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "seeker_user_id"))
     private User user;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "seeker_book_id"))
+    @JoinColumn(name = "bookId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "seeker_book_id"))
     private Book book;
 }

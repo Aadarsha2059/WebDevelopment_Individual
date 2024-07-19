@@ -2,6 +2,7 @@ package org.example.individual.Service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.individual.Entity.User;
+import org.example.individual.Pojo.AuthPojo;
 import org.example.individual.Pojo.UserPojo;
 import org.example.individual.Repository.UserRepository;
 import org.example.individual.Service.UserService;
@@ -41,6 +42,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Integer getUserIdByUserNameAndPword(AuthPojo authPojo) {
+        return userRepository.findByUsernameAndPassword(authPojo.getUsername(), authPojo.getPassword()).getId();
     }
 
 

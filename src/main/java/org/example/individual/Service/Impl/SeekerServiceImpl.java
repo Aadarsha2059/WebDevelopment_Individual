@@ -27,12 +27,13 @@ public class SeekerServiceImpl implements SeekerService {
         Seeker seeker = new Seeker();
 
         seeker.setId(seekerPojo.getId());
-        seeker.setSeekerName(seekerPojo.getSeekerName());
-        seeker.setAddress(seekerPojo.getAddress());
-        seeker.setEmail(seekerPojo.getEmail());
+
 
         User user = userRepository.findById(seekerPojo.getUserId()).get();
         seeker.setUser(user);
+        seeker.setSeekerName(user.getUserName());
+        seeker.setAddress(user.getAddress());
+        seeker.setEmail(user.getEmail());
 
         Book book = booksRepository.findById(seekerPojo.getBookId()).get();
         seeker.setBook(book);
@@ -53,6 +54,6 @@ public class SeekerServiceImpl implements SeekerService {
 
     @Override
     public void deleteById(Integer id) {
-
+seekerRepository.deleteById(id);
     }
 }
