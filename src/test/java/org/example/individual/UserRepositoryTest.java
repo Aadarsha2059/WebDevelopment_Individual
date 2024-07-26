@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
+import java.util.Optional;
 
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -68,10 +69,22 @@ public class UserRepositoryTest {
     }
     @Test
     @Order(5)
-    public void deleteUser(){
-        User userDeleted=userRepository.findById(1).get();
-        userRepository.delete(userDeleted);
-        Assertions.assertThat(userRepository.findById(1).get()).isNull();
+    @Rollback(value = false)
+    public void deleteUserTest(){
+        User user=userRepository.findById(1).get();
+        userRepository.delete(user);
+
+        //userRepository.deleteById(1);
+
+        User user1=null;
+
+        Optional<User>optionalUser= Optional.ofNullable(userRepository.findByUsernameAndPassword("Ram", "1233"));
+        if(optionalUser.isPresent()){
+            user1=optionalUser.get();
+
+        }
+        Assertions.assertThat(user1).isNull();
 
     }
 }
+
