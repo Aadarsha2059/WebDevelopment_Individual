@@ -15,16 +15,19 @@ public class User {
     @Id
     private Integer id;
 
-    @Column(name = "user_name", length = 255)
+    @Column(name = "userName", length = 255)
     private String userName;
 
     @Column(name = "password", length = 255)
     private String password;
+
+
 
     @Column(name = "email", length = 255)
     private String email;
 
     @Column(name = "address", length = 255)
     private String address;
+
 
 }

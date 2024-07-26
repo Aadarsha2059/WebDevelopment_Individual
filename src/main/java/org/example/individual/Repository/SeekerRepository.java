@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface SeekerRepository extends JpaRepository<Seeker, Integer> {
 
-    @Query(nativeQuery = true, value = "select id, seeker_id as seekerID, name as name,email as email, address from seeker")
+    @Query(nativeQuery = true, value = "select id, seeker_id as seekerID, name as name,email as email, password as password,address from seeker")
     List<SeekerProjection> findAllData();
 }

@@ -16,6 +16,8 @@ public class SeekerPojo {
 
     private String email;
 
+    private String password;
+
     private String address;
 
     private Integer userId;

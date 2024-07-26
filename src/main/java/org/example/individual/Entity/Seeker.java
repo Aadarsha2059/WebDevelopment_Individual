@@ -16,11 +16,14 @@ public class Seeker {
     @Id
     private Integer id;
 
-    @Column(name = "seeker_name", length = 255)
+    @Column(name = "seekerName", length = 255)
     private String seekerName;
 
     @Column(name = "email", length = 255)
     private String email;
+
+    @Column(name = "password",length=255)
+    private String password;
 
     @Column(name = "address", length = 255)
     private String address;
