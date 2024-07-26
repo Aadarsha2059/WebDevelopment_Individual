@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
 
         user.setId(userPojo.getId());
+        user.setPassword(userPojo.getPassword());
         user.setUserName(userPojo.getUserName());
         user.setEmail(userPojo.getEmail());
         user.setAddress(userPojo.getAddress());
