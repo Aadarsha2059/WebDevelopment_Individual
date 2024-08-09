@@ -1,3 +1,4 @@
+
 package org.example.individual.Service;
 
 import org.example.individual.Entity.Seeker;

@@ -1,3 +1,4 @@
+
 package org.example.individual.Controller;
 
 
@@ -27,7 +28,7 @@ public class BookController {
     public List<BookResponse> findAllData() {
         ImageToBase64 imageToBase64 = new ImageToBase64();
         List<BookResponse> bookresponseList = new ArrayList<>();
-       List<BooksProjection> items=  this.bookService.findAllProj();
+        List<BooksProjection> items=  this.bookService.findAllProj();
         items.forEach(item -> {
             BookResponse bookResponse = new BookResponse();
 
@@ -38,7 +39,7 @@ public class BookController {
             bookResponse.setImage(imageToBase64.getImageBase64(item.getImage()));
             bookResponse.setUserId(item.getUserId());
 
-           bookresponseList.add(bookResponse);
+            bookresponseList.add(bookResponse);
         });
         return bookresponseList;
 
@@ -60,7 +61,7 @@ public class BookController {
     @GetMapping("/user/{id}")
     public List<Book> findByUserId(@PathVariable Integer id) {
         ImageToBase64 imageToBase64 = new ImageToBase64();
-       List<Book> items= this.bookService.findByUserId(id);
+        List<Book> items= this.bookService.findByUserId(id);
         items = items.stream().map(item -> {
             item.setImage(imageToBase64.getImageBase64(item.getImage()));
             return item;
@@ -108,4 +109,3 @@ public class BookController {
     }
 
 }
-

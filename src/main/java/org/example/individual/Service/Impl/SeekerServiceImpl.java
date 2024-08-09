@@ -1,3 +1,4 @@
+
 package org.example.individual.Service.Impl;
 
 import lombok.RequiredArgsConstructor;
@@ -54,6 +55,6 @@ public class SeekerServiceImpl implements SeekerService {
 
     @Override
     public void deleteById(Integer id) {
-seekerRepository.deleteById(id);
+        seekerRepository.deleteById(id);
     }
 }

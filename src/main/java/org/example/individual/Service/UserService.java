@@ -19,5 +19,7 @@ public interface UserService {
     Integer getUserIdByUserNameAndPword(AuthPojo authPojo);
 
 
+    List<User> fetchAll();
 
+    void fetchById(int i);
 }

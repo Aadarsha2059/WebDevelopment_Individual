@@ -50,5 +50,15 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsernameAndPassword(authPojo.getUsername(), authPojo.getPassword()).getId();
     }
 
+    @Override
+    public List<User> fetchAll() {
+        return List.of();
+    }
+
+    @Override
+    public void fetchById(int i) {
+
+    }
+
 
 }
