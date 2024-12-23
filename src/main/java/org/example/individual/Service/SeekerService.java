@@ -16,4 +16,6 @@ public interface SeekerService {
 
     void deleteById(Integer id);
 
+    interface SellBookService {
+    }
 }

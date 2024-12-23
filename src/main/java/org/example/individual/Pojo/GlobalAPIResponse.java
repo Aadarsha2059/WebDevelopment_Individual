@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.individual.Entity.UserProfile;
 
 @Setter
 @Getter
@@ -11,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 
-public class GlobalAPIResponse<T> {
+public class GlobalAPIResponse<T> extends UserProfile {
     private String message;
     private String status;
     private T data;
