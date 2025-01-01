@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class SellBookController {
     private final SellBookService sellBookService;
 
-    @GetMapping
+    @GetMapping("sellbook/user/{userID}")
     public List<SellBookResponse> findAllData(){
         ImageToBase64 imageToBase64 = new ImageToBase64();
         List<SellBookResponse> bookResponseList =new ArrayList<>();
@@ -49,11 +49,11 @@ public class SellBookController {
     }
 
     @GetMapping
-    public List <Sellbooks> findAll(){
+    public List<Sellbooks> findAll(){
         ImageToBase64 imageToBase64= new ImageToBase64();
         List<Sellbooks> items= this.sellBookService.findAll();
         items=items.stream().map(item ->{
-            item.setImage(imageToBase64.getImageBase64(item.getImage()));
+            item.setImage(imageToBase64.getImageBase64(String.valueOf(item.getImage())));
             return item;
         }).collect(Collectors.toList());
         return items;

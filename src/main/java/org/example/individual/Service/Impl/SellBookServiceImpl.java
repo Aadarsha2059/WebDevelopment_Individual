@@ -18,41 +18,41 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
 public class SellBookServiceImpl implements SellBookService {
-    private  final  String UPLOAD_DIRECTORY = new StringBuilder().append(System.getProperty("user.dir")).append("/files/").toString();
 
-    private  final SellBooksRepository sellBooksRepository;
+    private final String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/files/";
+
+    private final SellBooksRepository sellBooksRepository;
     private final UserRepository userRepository;
 
-
-
     @Override
-    public Integer save(SellBooksPojo sellBooksPojo) throws IOException{
+    public Integer save(SellBooksPojo sellBooksPojo) throws IOException {
         Sellbooks sellbooks = new Sellbooks();
 
-        sellbooks.setId(sellbooks.getId());
-        sellbooks.setBookname(sellbooks.getBookname());
-        sellbooks.setGenre(sellbooks.getGenre());
-        sellbooks.setBookprice(sellbooks.getBookprice());
-        sellbooks.setBookcondition(sellbooks.getBookcondition());
+        // Set values from SellBooksPojo
+        sellbooks.setBookname(sellBooksPojo.getBookname());
+        sellbooks.setGenre(sellBooksPojo.getGenre());
+        sellbooks.setBookprice(String.valueOf(sellBooksPojo.getBookprice()));
+        sellbooks.setBookcondition(sellBooksPojo.getBookcondition());
 
-        User user = userRepository.findById(sellBooksPojo.getId()).get();
-        sellbooks.setUser(user);
-
-        // image upload logic
-        if(sellBooksPojo.getImage()!=null){
-            StringBuilder fileNames = new StringBuilder();
-            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, sellBooksPojo.getImage().getOriginalFilename());
-            fileNames.append(sellBooksPojo.getImage().getOriginalFilename());
-            Files.write(fileNameAndPath, sellBooksPojo.getImage().getBytes());
-
-            sellbooks.setImage(sellBooksPojo.getImage().getOriginalFilename());
+        // Find the user by ID and set the user for the book
+        User user = userRepository.findById(sellBooksPojo.getUserId()).orElse(null);
+        if (user != null) {
+            sellbooks.setUser(user);
         }
-        sellbooks =sellBooksRepository.save(sellbooks);
-        return sellbooks.getId();
-    }
 
+        // Handle image upload if present
+        if (sellBooksPojo.getImage() != null) {
+            String fileName = sellBooksPojo.getImage().getOriginalFilename();
+            Path filePath = Paths.get(UPLOAD_DIRECTORY, fileName);
+            Files.write(filePath, sellBooksPojo.getImage().getBytes());
+            sellbooks.setImage(fileName);  // Save the image file name
+        }
+
+        // Save the book to the repository
+        sellbooks = sellBooksRepository.save(sellbooks);
+        return sellbooks.getId();  // Return the saved book's ID
+    }
 
     @Override
     public List<SellBooksProjection> findAllProj() {
@@ -69,15 +69,13 @@ public class SellBookServiceImpl implements SellBookService {
         return sellBooksRepository.findBooksByUserId(id);
     }
 
-
     @Override
     public void deleteById(Integer id) {
-        sellBooksRepository.deleteById(id);
-
+        sellBooksRepository.deleteById(Long.valueOf(id));
     }
 
     @Override
     public Sellbooks findById(Integer id) {
-        return sellBooksRepository.findById(id).orElse(null);
+        return sellBooksRepository.findById(Long.valueOf(id)).orElse(null);
     }
 }

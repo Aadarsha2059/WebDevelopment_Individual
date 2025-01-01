@@ -27,4 +27,8 @@ public class SellBooksPojo {
     private Integer bookprice;
     private String bookcondition;
 
+
+    private Integer UserId;
+//   {
+//    }
 }
