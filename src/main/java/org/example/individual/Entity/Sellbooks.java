@@ -37,6 +37,6 @@ public class Sellbooks {
 
     public String getImage() {
 
-        return "";
+        return " ";
     }
 }

@@ -32,12 +32,12 @@ public class SellBookController {
             SellBookResponse bookResponse = new SellBookResponse();
 
             bookResponse.setId(item.getId());
-            bookResponse.setSeeker(item.getSeekerId());
+//            bookResponse.setSeeker(item.getSeekerId());
             bookResponse.setBookName(item.getBookName());
             bookResponse.setGenre(item.getGenre());
             bookResponse.setBookPrice(item.getBookPrice());
             bookResponse.setBookConditon(item.getBookCondition());
-            bookResponse.setImage(imageToBase64.getImageBase64(item.getImage()));
+//            bookResponse.setImage(imageToBase64.getImageBase64(item.getImage()));
             bookResponse.setUserId(item.getUserId());
             bookResponseList.add(bookResponse);
 
@@ -60,7 +60,7 @@ public class SellBookController {
 
 
     }
-    @GetMapping
+    @GetMapping("/user/{id}")
     public List<Sellbooks> findByUserId(@PathVariable Integer id){
         ImageToBase64 imageToBase64= new ImageToBase64();
         List<Sellbooks> items=this.sellBookService.findByUserId(id);
@@ -96,12 +96,6 @@ public class SellBookController {
         globalAPIResponse.setMessage("data deleted successfully");
 
     }
-
-    @GetMapping
-    public Sellbooks findById(@PathVariable Integer id){
-        return this.sellBookService.findById(id);
-    }
-
 
 
 }

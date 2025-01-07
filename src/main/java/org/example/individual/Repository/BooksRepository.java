@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface BooksRepository extends JpaRepository<Book, Integer> {
-    @Query(nativeQuery = true, value = "select b.id,s.id as seekerId, b.book_name as name,b.genres as genre,b.image as image,s.user_id as userId from book b left join seeker s on s.book_id=b.id")
+    @Query(nativeQuery = true, value = "select b.id,s.id as seekerId, b.book_name as name,b.genres as genre,b.image as image,b.cost as cost,b.type as type,s.user_id as userId from book b left join seeker s on s.book_id=b.id")
     List<BooksProjection> findAllData();
 
     List<Book> findBooksByUserId(Integer userId);

@@ -30,7 +30,6 @@ public class User {
     private String address;
 
 
-    @Column(name = "age",length = 255)
-        private Integer age;
+
 
 }

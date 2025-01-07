@@ -40,7 +40,7 @@ public class UserProfileController {
     public void delete(@PathVariable Integer id) {
         userProfileService.deleteById(id);
     }
-    @GetMapping
+    @GetMapping("{id}")
     public UserProfile findById(@PathVariable Integer id) {
         return this.userProfileService.findById(id);
     }

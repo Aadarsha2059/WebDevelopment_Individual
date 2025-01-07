@@ -22,5 +22,8 @@ public class BooksPojo {
 
     private String genres;
 
+    private Integer cost;
+    private String type;
+
     private Integer userId;
 }

@@ -67,7 +67,6 @@ public class BookController {
             return item;
         }).collect(Collectors.toList());
         return items;
-
     }
 
     @PostMapping

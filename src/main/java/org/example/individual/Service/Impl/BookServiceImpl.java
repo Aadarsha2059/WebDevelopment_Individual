@@ -32,6 +32,8 @@ public class BookServiceImpl implements BookService {
         book.setId(booksPojo.getId());
         book.setBooksName(booksPojo.getBooksName());
         book.setGenres(booksPojo.getGenres());
+        book.setType(booksPojo.getType());
+        book.setCost(booksPojo.getCost());
 
         User user = userRepository.findById(booksPojo.getUserId()).get();
         book.setUser(user);

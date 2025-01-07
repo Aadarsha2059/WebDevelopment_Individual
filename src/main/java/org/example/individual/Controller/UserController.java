@@ -30,7 +30,6 @@ public class UserController {
         globalAPIResponse.setData(200);
         globalAPIResponse.setMessage("data saved successfully");
         return globalAPIResponse;
-
     }
 
     @PutMapping
