@@ -1,13 +1,19 @@
 package org.example.individual.Pojo;
 
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
+
 public class AssignmentPojo {
-    private Long id; // Optional, for updates
-    private String title;
-    private MultipartFile pdfFile; // File to be uploaded
+
+    @NotNull
+    private String qualificationList;
 }

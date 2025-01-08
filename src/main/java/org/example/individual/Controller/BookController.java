@@ -12,7 +12,6 @@ import org.example.individual.Service.BookService;
 import org.example.individual.util.ImageToBase64;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +69,7 @@ public class BookController {
     }
 
     @PostMapping
-    public GlobalAPIResponse<Integer> save( @ModelAttribute BooksPojo booksPojo) throws IOException {
+    public GlobalAPIResponse<Integer> save(@ModelAttribute BooksPojo booksPojo) throws IOException {
         GlobalAPIResponse<Integer> globalAPIResponse = new GlobalAPIResponse<>();
         Integer bookId = bookService.save(booksPojo);
         globalAPIResponse.setData(bookId);

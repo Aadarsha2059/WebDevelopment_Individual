@@ -5,18 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
+@Table(name = "qualification")
 @Setter
+@Getter
 public class Assignment {
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "qualification_seq_gen")
+    @SequenceGenerator(name = "qualification_seq_gen",sequenceName = "qualification_seq",allocationSize = 1,initialValue = 1)
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private String title;
+    @Column(name = "qualification_list",length = 255)
+    private String qualificationList;
 
-    @Column(nullable = false)
-    private String pdfFileName; // Stores the name of the PDF file
 
-    // Stores the path to the PDF file
+
 }
