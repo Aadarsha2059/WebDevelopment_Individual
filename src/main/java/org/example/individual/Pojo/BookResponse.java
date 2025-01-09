@@ -15,5 +15,8 @@ public class BookResponse {
     private String name;
     private String genre;
     private String image;
-    private Integer userId;
+
+    private Integer cost;
+
+    private String type;
 }

@@ -36,7 +36,9 @@ public class BookController {
             bookResponse.setGenre(item.getGenre());
             bookResponse.setName(item.getName());
             bookResponse.setImage(imageToBase64.getImageBase64(item.getImage()));
-            bookResponse.setUserId(item.getUserId());
+//            bookResponse.setUserId(item.getUserId());
+            bookResponse.setCost(item.getCost());
+            bookResponse.setType(item.getType());
 
             bookresponseList.add(bookResponse);
         });
